@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gaurav Gokhe - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font (Minimal, Clean) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+  :root {
+    --bg-main: #0f0f17;
+    --bg-card: rgba(255, 255, 255, 0.06);
+    --text-main: #ffffff;
+    --text-muted: #c9c9d2;
+    --accent: #8b5cf6; /* Purple */
+    --accent2: #3b82f6; /* Blue */
+    --border-soft: rgba(255, 255, 255, 0.15);
+    --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.5);
+    --radius-lg: 18px;
+    --radius-pill: 999px;
+    --transition-fast: 0.2s ease;
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #0a0a13, #101026, #1c1133);
+    color: var(--text-main);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* PAGE SPACING */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 10px;
+    z-index: 50;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Logo */
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.7);
+  }
+
+  .brand-name {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  /* NAVBAR */
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    position: relative;
+    transition: 0.25s ease;
+    font-size: 14px;
+  }
+
+  nav a:hover {
+    color: #fff;
+    text-shadow: 0 0 6px var(--accent);
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.25s;
+    border-radius: 999px;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  /* SECTIONS */
+  .section-card {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(12px);
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  /* ABOUT */
+  #about .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    align-items: center;
+  }
+
+  .profile-photo {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 22px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+  }
+
+  .about-role {
+    color: var(--accent2);
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .skill-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-soft);
+    padding: 14px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.25s;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+  }
+
+  .skill-logo {
+    font-size: 20px;
+  }
+
+  /* PROJECTS */
+  .project-card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 16px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-soft);
+    transition: 0.3s;
+  }
+
+  .project-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+
+  .project-tech {
+    color: var(--accent2);
+  }
+
+  /* RECOMMENDATIONS */
+  .recommendation-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-soft);
+    padding: 16px;
+    border-radius: var(--radius-lg);
+  }
+
+  .recommendation-card::before {
+    color: rgba(139, 92, 246, 0.5);
+  }
+
+  textarea,
+  input {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid var(--border-soft);
+  }
+
+  textarea:focus,
+  input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+  }
+
+  .btn {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.6);
+    transition: 0.25s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba(139, 92, 246, 0.9);
+  }
+
+  /* HOME ICON */
+  .home-icon {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.9);
+  }
+
+  .home-icon:hover {
+    transform: scale(1.1);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    #about .content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+  <div class="page" id="top">
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="brand-logo">G</div>
+        <div class="brand-name">Gaurav Gokhe</div>
+      </div>
+
+      <!-- Task 2: Navigation Bar -->
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#recommendations">Recommendations</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- ABOUT SECTION (Task 3) -->
+    <section id="about">
+      <div class="section-card">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">A quick introduction.</p>
+
+        <div class="content">
+          <div>
+            <img src="gaurav.jpg.png" alt="Profile photo of Gaurav Gokhe" class="profile-photo" />
+          </div>
+          <div class="about-text">
+            <h2>Gaurav Gokhe</h2>
+            <p class="about-role">Aspiring Web Developer • Videography & Editing Enthusiast</p>
+            <p class="about-bio">
+              I am an aspiring web developer with a strong foundation in HTML, CSS, and JavaScript. I enjoy turning
+              ideas into clean, responsive, and user-friendly interfaces. With a passion for learning and solving
+              real-world problems, I continue to expand my skills in front-end technologies. I aim to contribute to a
+              dynamic team where I can grow while delivering creative and efficient digital solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION (Task 4) -->
+    <section id="skills">
+      <div class="section-card">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">Core strengths and technical abilities.</p>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-logo">💬</div>
+            <div>
+              <div class="skill-text-title">Communication</div>
+              <div class="skill-text-level">Clear, collaborative, and confident</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-logo">🌐</div>
+            <div>
+              <div class="skill-text-title">English (A2)</div>
+              <div class="skill-text-level">Basic communication in English</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-logo">🎬</div>
+            <div>
+              <div class="skill-text-title">Video Editing</div>
+              <div class="skill-text-level">Event highlights & reels</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-logo">📷</div>
+            <div>
+              <div class="skill-text-title">Videography</div>
+              <div class="skill-text-level">Event and stage coverage</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-logo">C</div>
+            <div>
+              <div class="skill-text-title">C Programming Basics</div>
+              <div class="skill-text-level">Fundamental logic & syntax</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-logo">HTML</div>
+            <div>
+              <div class="skill-text-title">HTML</div>
+              <div class="skill-text-level">Semantic & accessible markup</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-logo">CSS</div>
+            <div>
+              <div class="skill-text-title">CSS</div>
+              <div class="skill-text-level">Responsive layouts & styling</div>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-logo">JS</div>
+            <div>
+              <div class="skill-text-title">JavaScript</div>
+              <div class="skill-text-level">DOM interaction & basic logic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION (Task 5) -->
+    <section id="projects">
+      <div class="section-card">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Recent work and learning projects.</p>
+
+        <div class="projects-list">
+          <div class="project-card">
+            <div class="project-title">Personal Portfolio Website</div>
+            <div class="project-tech">HTML • CSS • JavaScript</div>
+            <div class="project-desc">
+              Designed and developed a responsive single-page portfolio that showcases skills, projects, and
+              recommendations. Includes a sticky navigation bar, smooth scrolling, and a dynamic recommendation system.
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-title">Video Editing Showcase</div>
+            <div class="project-tech">Videography • Video Editing</div>
+            <div class="project-desc">
+              Produced a highlight reel for university events, combining multiple clips, transitions, and music.
+              Focused on timing, pacing, and visual storytelling to create an engaging final video.
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-title">Student Information Form</div>
+            <div class="project-tech">HTML • CSS • JavaScript (DOM)</div>
+            <div class="project-desc">
+              Built an interactive form to collect student details and display them dynamically on the page using
+              JavaScript DOM manipulation and basic validation for user inputs.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMMENDATIONS SECTION (Tasks 6, 7, 9) -->
+    <section id="recommendations">
+      <div class="section-card">
+        <h2 class="section-title">Recommendations</h2>
+        <p class="section-subtitle">Feedback from people I’ve worked with.</p>
+
+        <div class="recommendations-wrapper">
+          <!-- Existing recommendations -->
+          <div class="recommendations-list" id="recommendations-list">
+            <div class="recommendation-card">
+              <p class="rec-text">
+                "Gaurav is a fast learner with excellent communication and technical curiosity. His ability to grasp
+                frontend concepts quickly and apply them in practical projects makes him a promising web developer."
+              </p>
+              <p class="rec-author">– Rajesh K, Mentor</p>
+            </div>
+
+            <div class="recommendation-card">
+              <p class="rec-text">
+                "Gaurav handled videography and editing for our university events with professionalism and creativity.
+                His attention to detail and commitment to quality are highly impressive."
+              </p>
+              <p class="rec-author">– Anjali S, Event Coordinator</p>
+            </div>
+
+            <div class="recommendation-card">
+              <p class="rec-text">
+                "Working with Gaurav has always been motivating. He collaborates well, shares ideas openly, and ensures
+                the project moves smoothly. A great team player with strong technical potential."
+              </p>
+              <p class="rec-author">– Manish P, Peer</p>
+            </div>
+          </div>
+
+          <!-- Form for new recommendations -->
+          <div class="rec-form-card">
+            <form id="rec-form" onsubmit="handleRecommendationSubmit(event)">
+              <div class="form-group">
+                <label for="rec-name">Your name (optional)</label>
+                <input type="text" id="rec-name" placeholder="Enter your name" />
+              </div>
+
+              <div class="form-group">
+                <label for="rec-text">Your recommendation</label>
+                <textarea id="rec-text" placeholder="Write your feedback here..."></textarea>
+              </div>
+
+              <button type="submit" class="btn">Submit Recommendation</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Home Icon (Task 8) -->
+  <a href="#top" class="home-icon" title="Back to top">🏠</a>
+
+  <!-- JavaScript -->
+  <script>
+    // Task 7 & 9: Add new recommendations + confirmation popup
+    function handleRecommendationSubmit(event) {
+      event.preventDefault();
+
+      const nameInput = document.getElementById("rec-name");
+      const textInput = document.getElementById("rec-text");
+      const name = nameInput.value.trim();
+      const text = textInput.value.trim();
+
+      if (!text) {
+        alert("Please write a recommendation before submitting.");
+        return;
+      }
+
+      const list = document.getElementById("recommendations-list");
+
+      const card = document.createElement("div");
+      card.className = "recommendation-card";
+
+      const textP = document.createElement("p");
+      textP.className = "rec-text";
+      textP.textContent = `"${text}"`;
+
+      const authorP = document.createElement("p");
+      authorP.className = "rec-author";
+      authorP.textContent = "– " + (name || "Anonymous");
+
+      card.appendChild(textP);
+      card.appendChild(authorP);
+
+      // Task 7: Add new recommendation to existing list
+      list.appendChild(card);
+
+      // Clear form
+      nameInput.value = "";
+      textInput.value = "";
+
+      // Task 9: Confirmation popup
+      alert("Thank you for your recommendation! It has been added.");
+    }
+  </script>
+</body>
+</html>
